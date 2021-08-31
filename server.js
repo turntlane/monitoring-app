@@ -11,7 +11,6 @@ let rollbar = new Rollbar({
 const students = []
 const app = express()
 
-app.use(rollbar.errorHandler())
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/index.html'))
@@ -28,6 +27,8 @@ app.post('/api/student', (req, res) => {
 })
 
 const port = process.env.PORT || 4545
+
+app.use(rollbar.errorHandler())
 
 app.listen(port, () => {
     console.log('Server up on 4545')
